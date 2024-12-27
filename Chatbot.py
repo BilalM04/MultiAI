@@ -1,5 +1,6 @@
 import streamlit as st
 from groq import Groq
+import os
 from components.sidebar import render_sidebar
 from models.active_models import get_owner
 
@@ -11,7 +12,7 @@ with st.sidebar:
     render_sidebar(0)
 
 # Initialize the Groq client
-client = Groq(api_key=st.secrets['groq_api_key'])
+client = Groq(api_key=os.environ["groq_api_key"])
 
 # Page title
 st.title('💬 Chatbot')
