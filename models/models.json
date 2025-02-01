@@ -2,19 +2,28 @@
     "object": "list",
     "data": [
         {
-            "id": "llama3-8b-8192",
+            "id": "llama-3.1-8b-instant",
             "object": "model",
             "created": 1693721698,
+            "owned_by": "Meta",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null
+        },
+        {
+            "id": "llama-3.3-70b-specdec",
+            "object": "model",
+            "created": 1733505017,
             "owned_by": "Meta",
             "active": true,
             "context_window": 8192,
             "public_apps": null
         },
         {
-            "id": "llama3-groq-8b-8192-tool-use-preview",
+            "id": "llama-3.2-90b-vision-preview",
             "object": "model",
-            "created": 1693721698,
-            "owned_by": "Groq",
+            "created": 1727226914,
+            "owned_by": "Meta",
             "active": true,
             "context_window": 8192,
             "public_apps": null
@@ -29,28 +38,37 @@
             "public_apps": null
         },
         {
-            "id": "llama-3.1-8b-instant",
+            "id": "gemma2-9b-it",
             "object": "model",
             "created": 1693721698,
+            "owned_by": "Google",
+            "active": true,
+            "context_window": 8192,
+            "public_apps": null
+        },
+        {
+            "id": "llama-3.3-70b-versatile",
+            "object": "model",
+            "created": 1733447754,
             "owned_by": "Meta",
+            "active": true,
+            "context_window": 32768,
+            "public_apps": null
+        },
+        {
+            "id": "deepseek-r1-distill-llama-70b",
+            "object": "model",
+            "created": 1737924940,
+            "owned_by": "DeepSeek / Meta",
             "active": true,
             "context_window": 131072,
             "public_apps": null
         },
         {
-            "id": "llama-3.1-70b-versatile",
+            "id": "llama-3.2-3b-preview",
             "object": "model",
-            "created": 1693721698,
+            "created": 1727224290,
             "owned_by": "Meta",
-            "active": true,
-            "context_window": 131072,
-            "public_apps": null
-        },
-        {
-            "id": "llama3-groq-70b-8192-tool-use-preview",
-            "object": "model",
-            "created": 1693721698,
-            "owned_by": "Groq",
             "active": true,
             "context_window": 8192,
             "public_apps": null
@@ -65,19 +83,28 @@
             "public_apps": null
         },
         {
-            "id": "gemma-7b-it",
+            "id": "llama-3.2-1b-preview",
             "object": "model",
-            "created": 1693721698,
-            "owned_by": "Google",
+            "created": 1727224268,
+            "owned_by": "Meta",
             "active": true,
             "context_window": 8192,
             "public_apps": null
         },
         {
-            "id": "gemma2-9b-it",
+            "id": "llama-3.2-11b-vision-preview",
+            "object": "model",
+            "created": 1727226869,
+            "owned_by": "Meta",
+            "active": true,
+            "context_window": 8192,
+            "public_apps": null
+        },
+        {
+            "id": "llama3-8b-8192",
             "object": "model",
             "created": 1693721698,
-            "owned_by": "Google",
+            "owned_by": "Meta",
             "active": true,
             "context_window": 8192,
             "public_apps": null
