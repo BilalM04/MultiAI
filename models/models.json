@@ -11,24 +11,6 @@
             "public_apps": null
         },
         {
-            "id": "llama-3.3-70b-specdec",
-            "object": "model",
-            "created": 1733505017,
-            "owned_by": "Meta",
-            "active": true,
-            "context_window": 8192,
-            "public_apps": null
-        },
-        {
-            "id": "llama-3.2-90b-vision-preview",
-            "object": "model",
-            "created": 1727226914,
-            "owned_by": "Meta",
-            "active": true,
-            "context_window": 8192,
-            "public_apps": null
-        },
-        {
             "id": "llama3-70b-8192",
             "object": "model",
             "created": 1693721698,
@@ -38,22 +20,24 @@
             "public_apps": null
         },
         {
-            "id": "gemma2-9b-it",
+            "id": "meta-llama/llama-4-maverick-17b-128e-instruct",
             "object": "model",
-            "created": 1693721698,
-            "owned_by": "Google",
-            "active": true,
-            "context_window": 8192,
-            "public_apps": null
-        },
-        {
-            "id": "llama-3.3-70b-versatile",
-            "object": "model",
-            "created": 1733447754,
+            "created": 1743877158,
             "owned_by": "Meta",
             "active": true,
-            "context_window": 32768,
-            "public_apps": null
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 8192
+        },
+        {
+            "id": "compound-beta",
+            "object": "model",
+            "created": 1740880017,
+            "owned_by": "Groq",
+            "active": true,
+            "context_window": 8192,
+            "public_apps": null,
+            "max_completion_tokens": 8192
         },
         {
             "id": "deepseek-r1-distill-llama-70b",
@@ -62,43 +46,88 @@
             "owned_by": "DeepSeek / Meta",
             "active": true,
             "context_window": 131072,
-            "public_apps": null
+            "public_apps": null,
+            "max_completion_tokens": 131072
         },
         {
-            "id": "llama-3.2-3b-preview",
+            "id": "compound-beta-mini",
             "object": "model",
-            "created": 1727224290,
-            "owned_by": "Meta",
+            "created": 1742953279,
+            "owned_by": "Groq",
             "active": true,
             "context_window": 8192,
-            "public_apps": null
+            "public_apps": null,
+            "max_completion_tokens": 8192
         },
         {
-            "id": "mixtral-8x7b-32768",
+            "id": "qwen-qwq-32b",
             "object": "model",
-            "created": 1693721698,
+            "created": 1741214760,
+            "owned_by": "Alibaba Cloud",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 131072
+        },
+        {
+            "id": "llama-3.3-70b-versatile",
+            "object": "model",
+            "created": 1733447754,
+            "owned_by": "Meta",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 32768
+        },
+        {
+            "id": "mistral-saba-24b",
+            "object": "model",
+            "created": 1739996492,
             "owned_by": "Mistral AI",
             "active": true,
             "context_window": 32768,
-            "public_apps": null
+            "public_apps": null,
+            "max_completion_tokens": 32768
         },
         {
-            "id": "llama-3.2-1b-preview",
+            "id": "allam-2-7b",
             "object": "model",
-            "created": 1727224268,
-            "owned_by": "Meta",
+            "created": 1737672203,
+            "owned_by": "SDAIA",
             "active": true,
-            "context_window": 8192,
-            "public_apps": null
+            "context_window": 4096,
+            "public_apps": null,
+            "max_completion_tokens": 4096
         },
         {
-            "id": "llama-3.2-11b-vision-preview",
+            "id": "meta-llama/llama-4-scout-17b-16e-instruct",
             "object": "model",
-            "created": 1727226869,
+            "created": 1743874824,
             "owned_by": "Meta",
             "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 8192
+        },
+        {
+            "id": "llama-3.1-8b-instant",
+            "object": "model",
+            "created": 1693721698,
+            "owned_by": "Meta",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 131072
+        },
+        {
+            "id": "gemma2-9b-it",
+            "object": "model",
+            "created": 1693721698,
+            "owned_by": "Google",
+            "active": true,
             "context_window": 8192,
-            "public_apps": null
+            "public_apps": null,
+            "max_completion_tokens": 8192
         },
         {
             "id": "llama3-8b-8192",
@@ -107,7 +136,8 @@
             "owned_by": "Meta",
             "active": true,
             "context_window": 8192,
-            "public_apps": null
+            "public_apps": null,
+            "max_completion_tokens": 8192
         }
     ]
 }
