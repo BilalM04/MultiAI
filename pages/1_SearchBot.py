@@ -53,7 +53,7 @@ if prompt and len(prompt) <= 500:
 
     search_agent = initialize_agent(
         [st.session_state.search_tool], llm,
-        agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+        agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
         handle_parsing_errors=False,
         max_iterations=5
     )
@@ -62,7 +62,7 @@ if prompt and len(prompt) <= 500:
         st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
 
         try:
-            response = search_agent.run(st.session_state.search_messages, callbacks=[st_cb])
+            response = search_agent.run(prompt, callbacks=[st_cb])
             st.session_state.search_messages.append({"role": "assistant", "content": response})
             st.write(response)
         except Exception as e:
