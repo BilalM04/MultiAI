@@ -6,7 +6,7 @@ langchain_huggingface
 langchain_text_splitters
 Requests
 streamlit
-ddgs
+duckduckgo-search
 pypdf
 faiss-cpu
 sentence-transformers
