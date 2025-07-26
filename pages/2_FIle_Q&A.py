@@ -94,11 +94,11 @@ for message in st.session_state.qna_messages:
 # Prompt input template to display the prompts
 if error_detected:
     st.error("❗ One or more of the uploaded documents is empty. Please remove them and try again.")
-    prompt = st.chat_input('Please remove the empty file(s) and upload valid ones.', disabled=True)
+    prompt = st.chat_input('Please remove the empty file(s) and upload valid ones', disabled=True)
 elif uploaded_files:
-    prompt = st.chat_input('Ask a question about the uploaded file (max 500 characters).', disabled=False)
+    prompt = st.chat_input('Ask a question about the uploaded file (max 500 characters)', disabled=False)
 else:
-    prompt = st.chat_input('Please upload a file.', disabled=True)
+    prompt = st.chat_input('Please upload a file', disabled=True)
 
 # Ensure the prompt is within the character limit
 if prompt and len(prompt) <= 500:

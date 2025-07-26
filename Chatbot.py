@@ -26,7 +26,7 @@ for message in st.session_state.chatbot_messages:
     st.chat_message(message['role']).markdown(message['content'])
 
 # Prompt input template to display the prompts
-prompt = st.chat_input('Pass your prompt here (max 500 characters).')
+prompt = st.chat_input('Pass your prompt here (max 500 characters)')
 
 # Ensure the prompt is within the character limit
 if prompt and len(prompt) <= 500:
