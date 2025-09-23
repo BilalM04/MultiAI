@@ -10,3 +10,4 @@ duckduckgo-search
 pypdf
 faiss-cpu
 sentence-transformers
+ddgs
