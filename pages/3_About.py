@@ -17,7 +17,7 @@ st.write("This is just a regular chatbot where you can interact with various ope
 st.title("🔎 SearchBot")
 st.write("SearchBot is a bit more advanced. It combines the power of LLMs with search tools, like DuckDuckGo's LangChain Python modules, to give you more accurate answers. The LLMs generate search queries, and then the results are used to build responses. Not all LLMs are great at using these search tools, so you might see some errors occasionally. Below is a list of LLMs that most consistently perform well with the search tool:")
 
-consistent_llms = ["llama3-70b-8192", "llama3-8b-8192", "gemma2-9b-it", "mistral-saba-24b"]
+consistent_llms = ["meta-llama/llama-4-scout-17b-16e-instruct", "gemma2-9b-it", "llama-3.1-8b-instant"]
 
 # About File Q&A
 st.markdown("\n".join([f"- {llm} ({get_owner(llm)})" for llm in consistent_llms]))

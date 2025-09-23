@@ -19,13 +19,7 @@ This is just a regular chatbot where you can interact with various open source L
 
 ### 🔎 SearchBot
 
-SearchBot is a bit more advanced. It combines the power of LLMs with search tools, like DuckDuckGo's LangChain Python modules, to give you more accurate answers. The LLMs generate search queries, and then the results are used to build responses. Not all LLMs are great at using these search tools, so you might see some errors occasionally. Below is a list of LLMs that most consistently perform well with the search tool:
-
-- llama3-70b-8192 (Meta)
-- llama3-8b-8192 (Meta)
-- gemma2-9b-it (Google)
-- llama-3.1-70b-versatile (Meta)
-- mixtral-8x7b-32768 (Mistral AI)
+SearchBot is a bit more advanced. It combines the power of LLMs with search tools, like DuckDuckGo's LangChain Python modules, to give you more accurate answers. The LLMs generate search queries, and then the results are used to build responses. Not all LLMs are great at using these search tools, so you might see some errors occasionally. Check the 'About' page for a list of LLMs that most consistently perform well with the search tool.
 
 ### 📝 File Q&A
 
@@ -101,4 +95,3 @@ With the File Q&A feature, you can upload files in PDF, TXT, or Markdown (MD) fo
 ## Demo
 
 Explore the live demo: [MultiAI](https://multi-ai.streamlit.app/)
-
