@@ -5,24 +5,37 @@ from langchain.chains import RetrievalQA
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_groq import ChatGroq
-from components.sidebar import render_sidebar
+from utils.sidebar import render_sidebar
+from utils.initialize import initialize
 from models.active_models import get_owner
 import tempfile
 
-# App title
-st.set_page_config(page_title="MultiAI", page_icon="./assets/robot.png")
+# ---------------------------------------
+# Initialize session
+# ---------------------------------------
+initialize()
 
-# Sidebar elements
-with st.sidebar:
-    render_sidebar(1)
-
+# ---------------------------------------
+# Groq LLM Client
+# ---------------------------------------
 llm = ChatGroq(
-    model=st.session_state.selected_model,
+    model=st.session_state.selected_text_model,
     temperature=0.2,
     max_retries=2,
     groq_api_key=st.secrets['groq_api_key']
 )
 
+# ---------------------------------------
+# Clear context
+# ---------------------------------------
+def clear_context():
+    st.session_state.qna_messages = []
+    if 'chain' in st.session_state:
+        del st.session_state.chain
+
+# ---------------------------------------
+# Load files and store as vectorestore
+# ---------------------------------------
 @st.cache_resource
 def load_files(file_paths):
     loaders = []
@@ -32,12 +45,10 @@ def load_files(file_paths):
         elif file_path.endswith('.txt') or file_path.endswith('.md'):
             loaders.append(TextLoader(file_path, encoding='utf-8'))
 
-    # Load documents
     all_documents = []
     for loader in loaders:
         all_documents.extend(loader.load())
 
-    # Split
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=20)
     all_splits = text_splitter.split_documents(all_documents)
 
@@ -45,28 +56,39 @@ def load_files(file_paths):
     
     return vectorstore
 
-# Page title
+# ---------------------------------------
+# Sidebar
+# ---------------------------------------
+with st.sidebar:
+    render_sidebar(3)
+
+# ---------------------------------------
+# Page Header
+# ---------------------------------------
 st.title('📝 File Q&A')
-st.caption("🚀 Chatbot powered by " + st.session_state.selected_model + " (" + get_owner(st.session_state.selected_model) + ")")
+st.caption("🚀 Chatbot powered by " + st.session_state.selected_text_model + " (" + get_owner(st.session_state.selected_text_model) + ")")
 
-def clear_context():
-    st.session_state.qna_messages = []
-    if 'chain' in st.session_state:
-        del st.session_state.chain  # Clear the old chain if it exists
+# ---------------------------------------
+# File Uploader
+# ---------------------------------------
+uploaded_files = st.file_uploader(
+    "Upload PDF, TXT, or MD files",
+    type=["pdf", "txt", "md"],
+    accept_multiple_files=True,
+    on_change=clear_context
+)
+empty_file = False
 
-# File uploader with on_change callback to clear the context
-uploaded_files = st.file_uploader("Upload PDF, TXT, or MD files", type=["pdf", "txt", "md"], accept_multiple_files=True, on_change=clear_context)
-
-# Flag to check if any file is empty
-error_detected = False
-
+# ---------------------------------------
+# Process uploaded files and initialize 
+# RAG pipeline
+# ---------------------------------------
 if uploaded_files:
     file_paths = []
 
     for uploaded_file in uploaded_files:
         if uploaded_file.size == 0:
-            # If any file is empty, set the error flag and break
-            error_detected = True
+            empty_file = True
             break
 
         file_extension = uploaded_file.name.split('.')[-1]
@@ -74,7 +96,7 @@ if uploaded_files:
             temp_file.write(uploaded_file.read())
             file_paths.append(temp_file.name)
 
-    if not error_detected and 'chain' not in st.session_state:
+    if not empty_file and 'chain' not in st.session_state:
         vectorstore = load_files(file_paths)
         st.session_state.chain = RetrievalQA.from_chain_type(
             llm=llm,
@@ -83,38 +105,34 @@ if uploaded_files:
             input_key='question'
         )
 
-# Session state message variable to hold old messages
-if 'qna_messages' not in st.session_state:
-    st.session_state.qna_messages = []
-
-# Display all historical messages
+# ---------------------------------------
+# Chat History
+# ---------------------------------------
 for message in st.session_state.qna_messages:
     st.chat_message(message['role']).markdown(message['content'])
 
-# Prompt input template to display the prompts
-if error_detected:
-    st.error("❗ One or more of the uploaded documents is empty. Please remove them and try again.")
+# ---------------------------------------
+# Prompt Input
+# ---------------------------------------
+if empty_file:
+    st.error("One or more of the uploaded documents is empty. Please remove them and try again.", icon=":material/error:")
     prompt = st.chat_input('Please remove the empty file(s) and upload valid ones', disabled=True)
 elif uploaded_files:
     prompt = st.chat_input('Ask a question about the uploaded file (max 500 characters)', disabled=False)
 else:
     prompt = st.chat_input('Please upload a file', disabled=True)
 
-# Ensure the prompt is within the character limit
+# ---------------------------------------
+# LLM Response using RAG
+# ---------------------------------------
 if prompt and len(prompt) <= 500:
-    # Display the prompt
     st.chat_message('user').markdown(prompt)
-
-    # Store user prompt in state
     st.session_state.qna_messages.append({'role': 'user', 'content': prompt})
     
     # Get response from the LLM using RAG
     response = st.session_state.chain.run(prompt)
     
-    # Show the LLM response
     st.chat_message('assistant').markdown(response)
-
-    # Store the LLM response in state
     st.session_state.qna_messages.append({'role': 'assistant', 'content': response})
 elif prompt and len(prompt) > 500:
-    st.warning("⚠️ Prompt exceeds the 500 character limit.")
+    st.warning("Prompt exceeds the 500 character limit.", icon=":material/warning:")

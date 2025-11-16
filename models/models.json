@@ -2,6 +2,26 @@
     "object": "list",
     "data": [
         {
+            "id": "llama-3.3-70b-versatile",
+            "object": "model",
+            "created": 1733447754,
+            "owned_by": "Meta",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 32768
+        },
+        {
+            "id": "openai/gpt-oss-120b",
+            "object": "model",
+            "created": 1754408224,
+            "owned_by": "OpenAI",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 65536
+        },
+        {
             "id": "meta-llama/llama-4-scout-17b-16e-instruct",
             "object": "model",
             "created": 1743874824,
@@ -12,30 +32,30 @@
             "max_completion_tokens": 8192
         },
         {
-            "id": "meta-llama/llama-4-maverick-17b-128e-instruct",
+            "id": "groq/compound",
             "object": "model",
-            "created": 1743877158,
-            "owned_by": "Meta",
+            "created": 1756949530,
+            "owned_by": "Groq",
             "active": true,
             "context_window": 131072,
             "public_apps": null,
             "max_completion_tokens": 8192
         },
         {
-            "id": "qwen/qwen3-32b",
+            "id": "openai/gpt-oss-safeguard-20b",
             "object": "model",
-            "created": 1748396646,
-            "owned_by": "Alibaba Cloud",
+            "created": 1761708789,
+            "owned_by": "OpenAI",
             "active": true,
             "context_window": 131072,
             "public_apps": null,
-            "max_completion_tokens": 40960
+            "max_completion_tokens": 65536
         },
         {
-            "id": "groq/compound",
+            "id": "meta-llama/llama-4-maverick-17b-128e-instruct",
             "object": "model",
-            "created": 1756949530,
-            "owned_by": "Groq",
+            "created": 1743877158,
+            "owned_by": "Meta",
             "active": true,
             "context_window": 131072,
             "public_apps": null,
@@ -52,16 +72,6 @@
             "max_completion_tokens": 131072
         },
         {
-            "id": "openai/gpt-oss-120b",
-            "object": "model",
-            "created": 1754408224,
-            "owned_by": "OpenAI",
-            "active": true,
-            "context_window": 131072,
-            "public_apps": null,
-            "max_completion_tokens": 65536
-        },
-        {
             "id": "groq/compound-mini",
             "object": "model",
             "created": 1756949707,
@@ -70,46 +80,6 @@
             "context_window": 131072,
             "public_apps": null,
             "max_completion_tokens": 8192
-        },
-        {
-            "id": "gemma2-9b-it",
-            "object": "model",
-            "created": 1693721698,
-            "owned_by": "Google",
-            "active": true,
-            "context_window": 8192,
-            "public_apps": null,
-            "max_completion_tokens": 8192
-        },
-        {
-            "id": "openai/gpt-oss-20b",
-            "object": "model",
-            "created": 1754407957,
-            "owned_by": "OpenAI",
-            "active": true,
-            "context_window": 131072,
-            "public_apps": null,
-            "max_completion_tokens": 65536
-        },
-        {
-            "id": "deepseek-r1-distill-llama-70b",
-            "object": "model",
-            "created": 1737924940,
-            "owned_by": "DeepSeek / Meta",
-            "active": true,
-            "context_window": 131072,
-            "public_apps": null,
-            "max_completion_tokens": 131072
-        },
-        {
-            "id": "llama-3.3-70b-versatile",
-            "object": "model",
-            "created": 1733447754,
-            "owned_by": "Meta",
-            "active": true,
-            "context_window": 131072,
-            "public_apps": null,
-            "max_completion_tokens": 32768
         },
         {
             "id": "moonshotai/kimi-k2-instruct",
@@ -122,6 +92,26 @@
             "max_completion_tokens": 16384
         },
         {
+            "id": "openai/gpt-oss-20b",
+            "object": "model",
+            "created": 1754407957,
+            "owned_by": "OpenAI",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 65536
+        },
+        {
+            "id": "qwen/qwen3-32b",
+            "object": "model",
+            "created": 1748396646,
+            "owned_by": "Alibaba Cloud",
+            "active": true,
+            "context_window": 131072,
+            "public_apps": null,
+            "max_completion_tokens": 40960
+        },
+        {
             "id": "moonshotai/kimi-k2-instruct-0905",
             "object": "model",
             "created": 1757046093,
@@ -130,6 +120,39 @@
             "context_window": 262144,
             "public_apps": null,
             "max_completion_tokens": 16384
+        },
+        {
+            "id": "whisper-large-v3-turbo",
+            "object": "model",
+            "created": 1728413088,
+            "owned_by": "OpenAI",
+            "active": true,
+            "context_window": 448,
+            "public_apps": null,
+            "max_completion_tokens": 448,
+            "type": "stt"
+        },
+        {
+            "id": "playai-tts",
+            "object": "model",
+            "created": 1740682771,
+            "owned_by": "PlayAI",
+            "active": true,
+            "context_window": 8192,
+            "public_apps": null,
+            "max_completion_tokens": 8192,
+            "type": "tts"
+        },
+        {
+            "id": "whisper-large-v3",
+            "object": "model",
+            "created": 1693721698,
+            "owned_by": "OpenAI",
+            "active": true,
+            "context_window": 448,
+            "public_apps": null,
+            "max_completion_tokens": 448,
+            "type": "stt"
         }
     ]
 }

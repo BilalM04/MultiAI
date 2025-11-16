@@ -1,60 +1,71 @@
 import streamlit as st
 from langchain_groq import ChatGroq
 from langchain.agents import initialize_agent, AgentType
-from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
-from components.sidebar import render_sidebar
+from utils.sidebar import render_sidebar
 from models.active_models import get_owner
+from utils.constants import wikipedia_tool_name, duckduckgo_tool_name, generic_error_message
+from utils.initialize import initialize
 
-# App title
-st.set_page_config(page_title="MultiAI", page_icon="./assets/robot.png")
+# ---------------------------------------
+# Initialize session
+# ---------------------------------------
+initialize()
 
-# Sidebar elements
-with st.sidebar:
-    render_sidebar(2)
-
+# ---------------------------------------
+# Groq LLM Client
+# ---------------------------------------
 llm = ChatGroq(
-    model=st.session_state.selected_model,
+    model=st.session_state.selected_text_model,
     temperature=0.0,
     max_retries=2,
     groq_api_key=st.secrets['groq_api_key']
 )
 
-# Page title
-st.title('🔎 SearchBot')
-st.caption("🚀 Chatbot powered by " + st.session_state.selected_model + " (" + get_owner(st.session_state.selected_model) + ")")
+# ---------------------------------------
+# Sidebar
+# ---------------------------------------
+with st.sidebar:
+    render_sidebar(1)
+
+# ---------------------------------------
+# Page Header
+# ---------------------------------------
+st.title('🔎 Searchbot')
+st.caption(f"🚀 Chatbot powered by {st.session_state.selected_text_model} ({get_owner(st.session_state.selected_text_model)}) and {st.session_state.selected_search_tool}")
 
 st.info(
-    "Some Large Language Models (LLMs) may not handle the search tool well and can produce errors. "
-    "Try switching models in the sidebar or visit the 'About' page for recommendations."
+    "Some Large Language Models (LLMs) may not handle the search tool well and can produce errors. Try switching the model and tool in the sidebar.",
+    icon=":material/info:"
 )
 
-# Session state message variable to hold old messages
-if 'search_messages' not in st.session_state:
-    st.session_state.search_messages = []
-
-# Instantiate search tool once and store in session_state
-if 'search_tool' not in st.session_state:
-    st.session_state.search_tool = DuckDuckGoSearchRun(name="Search")
-
-# Display all historical messages
+# ---------------------------------------
+# Chat History
+# ---------------------------------------
 for message in st.session_state.search_messages:
     st.chat_message(message['role']).markdown(message['content'])
 
-# Prompt input template to display the prompts
+# ---------------------------------------
+# Prompt Input
+# ---------------------------------------
 prompt = st.chat_input('Ask me anything, I can search the web for you (max 500 characters)')
 
-# Ensure the prompt is within the character limit
+# ---------------------------------------
+# LLM Response
+# ---------------------------------------
 if prompt and len(prompt) <= 500:
-    # Display the prompt
     st.chat_message('user').markdown(prompt)
-    # Store user prompt in state
-    st.session_state.search_messages.append({'role':'user', 'content':prompt})
+    st.session_state.search_messages.append({ 'role': 'user', 'content': prompt })
+
+    if st.session_state.selected_search_tool == wikipedia_tool_name:
+        search_tool = st.session_state.wikipedia_tool
+    elif st.session_state.selected_search_tool == duckduckgo_tool_name:
+        search_tool = st.session_state.duckduckgo_tool
 
     search_agent = initialize_agent(
-        [st.session_state.search_tool], llm,
+        [search_tool], llm,
         agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-        handle_parsing_errors=False,
+        handle_parsing_errors=True,
         max_iterations=5
     )
 
@@ -67,12 +78,13 @@ if prompt and len(prompt) <= 500:
             st.write(response)
         except Exception as e:
             if "DuckDuckGoSearchException" in str(type(e)):
-                error_msg = "🦆 DuckDuckGo is currently rate-limiting the search tool. Please try again later."
+                message = "DuckDuckGo is currently rate-limiting the search tool. Please try again later or use another search tool."
+                st.warning(message, icon="🦆")
             else:
-                error_msg = f"⚠️ An error occurred: {str(e)}"
+                message = generic_error_message
+                st.error(message, icon=":material/error:")
 
-            st.session_state.search_messages.append({"role": "assistant", "content": error_msg})
-            st.error(error_msg)
+            st.session_state.search_messages.append({"role": "assistant", "content": message})
 
 elif prompt and len(prompt) > 500:
-    st.warning("⚠️ Prompt exceeds the 500 character limit.")
+    st.warning("Prompt exceeds the 500 character limit.", icon=":material/warning:")

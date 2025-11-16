@@ -1,6 +1,11 @@
 # MultiAI
 
-This app provides three main features: a standard Chatbot for general conversations, a more advanced SearchBot that leverages Large Language Models (LLMs) with search tools, and a File Q&A feature that allows you to interact with documents by asking questions based on their content.
+MultiAI is a multi-mode AI app offering four core capabilities:
+
+- **Chatbot** for general conversations
+- **Searchbot** for LLM-powered web search
+- **Voicebot** for fully voice-driven conversations
+- **File Q&A** for interacting with documents using Retrieval-Augmented Generation (RAG)
 
 **Explore MultiAI at:** https://multi-ai.streamlit.app/
 
@@ -15,15 +20,22 @@ This app provides three main features: a standard Chatbot for general conversati
 
 ### 💬 Chatbot
 
-This is just a regular chatbot where you can interact with various open source Large Language Models (LLMs). Whether you want to ask questions, chat about random topics, or just explore what these models can do, this chatbot is here to help. It's a fun and simple way to see how LLMs handle different kinds of conversations.
+A simple, general-purpose chatbot that lets you interact with a variety of open-source **Large Language Models (LLMs)** and explore how they handle different types of conversations.
 
-### 🔎 SearchBot
+### 🔎 Searchbot
 
-SearchBot is a bit more advanced. It combines the power of LLMs with search tools, like DuckDuckGo's LangChain Python modules, to give you more accurate answers. The LLMs generate search queries, and then the results are used to build responses. Not all LLMs are great at using these search tools, so you might see some errors occasionally. Check the 'About' page for a list of LLMs that most consistently perform well with the search tool.
+Searchbot blends LLM reasoning with real-time search tools to deliver more accurate answers. The model generates search queries, retrieves results, and uses them to form responses. Currently supported search providers:
+
+- **Wikipedia:** Great for factual, structured information from a trusted knowledge base.
+- **DuckDuckGo:** A fast, privacy-focused web search engine for broad internet results.
+
+### 🎙️ Voicebot
+
+Talk to your AI assistant hands-free. The Voicebot converts your speech to text, generates a response using an LLM, and replies back with natural-sounding audio—making conversations fully voice-driven.
 
 ### 📝 File Q&A
 
-With the File Q&A feature, you can upload files in PDF, TXT, or Markdown (MD) formats and ask questions based on the content of those files. The LLMs use Retrieval-Augmented Generation (RAG), which means they retrieve relevant information from the document and generate answers that are contextually accurate. This approach helps the model provide more precise responses based on the actual content of the files, making it a handy way to interact with your documents without having to read through everything yourself.
+Upload PDF, TXT, or Markdown files and ask questions directly about their content. This feature uses **Retrieval-Augmented Generation (RAG)**, allowing the model to pull relevant information from your documents and generate accurate, context-aware answers—making it easy to interact with your files without reading everything manually.
 
 ## Technologies Used
 
@@ -44,7 +56,7 @@ With the File Q&A feature, you can upload files in PDF, TXT, or Markdown (MD) fo
 - **LangChain:**
   - **LangChain Core:** Manages LLMs and tool interactions.
   - **LangChain Agents:** Used for `ZERO_SHOT_REACT_DESCRIPTION` agents with web search tools.
-  - **LangChain Community Tools:** Integrates DuckDuckGo for real-time web searches.
+  - **LangChain Community Tools:** Integrates DuckDuckGo and Wikipedia for real-time web searches.
   - **LangChain Document Loaders:** Loads and processes PDF, TXT, and Markdown files.
   - **LangChain VectorStores:** FAISS is used for document embedding and retrieval.
 
@@ -90,6 +102,7 @@ With the File Q&A feature, you can upload files in PDF, TXT, or Markdown (MD) fo
 
 - **Chatbot:** Start a conversation by typing in the input field and pressing Enter.
 - **SearchBot:** Type your prompt, and the bot will use both LLMs and search tools to give you an answer.
+- **Voicebot:** Record or upload audio, get it transcribed, receive an LLM reply, and hear the response.
 - **File Q&A:** Upload a PDF, TXT, or MD file and ask questions related to its content.
 
 ## Demo
