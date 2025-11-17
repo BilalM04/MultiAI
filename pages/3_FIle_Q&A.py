@@ -7,6 +7,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_groq import ChatGroq
 from utils.sidebar import render_sidebar
 from utils.initialize import initialize
+from utils.constants import fileqna_state
 from models.active_models import get_owner
 import tempfile
 
@@ -60,7 +61,7 @@ def load_files(file_paths):
 # Sidebar
 # ---------------------------------------
 with st.sidebar:
-    render_sidebar(3)
+    render_sidebar(fileqna_state)
 
 # ---------------------------------------
 # Page Header

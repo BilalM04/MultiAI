@@ -1,11 +1,12 @@
 # MultiAI
 
-MultiAI is a multi-mode AI app offering four core capabilities:
+MultiAI is a multi-mode AI app offering five core capabilities:
 
 - **Chatbot** for general conversations
 - **Searchbot** for LLM-powered web search
 - **Voicebot** for fully voice-driven conversations
 - **File Q&A** for interacting with documents using Retrieval-Augmented Generation (RAG)
+- An **Account System** to save, load, and manage your chat histories
 
 **Explore MultiAI at:** https://multi-ai.streamlit.app/
 
@@ -37,6 +38,10 @@ Talk to your AI assistant hands-free. The Voicebot converts your speech to text,
 
 Upload PDF, TXT, or Markdown files and ask questions directly about their content. This feature uses **Retrieval-Augmented Generation (RAG)**, allowing the model to pull relevant information from your documents and generate accurate, context-aware answers—making it easy to interact with your files without reading everything manually.
 
+### ⚙️ Account
+
+Create an account or log in to sync your conversations across sessions and access your saved chat histories.
+
 ## Technologies Used
 
 ### Programming Language
@@ -59,6 +64,14 @@ Upload PDF, TXT, or Markdown files and ask questions directly about their conten
   - **LangChain Community Tools:** Integrates DuckDuckGo and Wikipedia for real-time web searches.
   - **LangChain Document Loaders:** Loads and processes PDF, TXT, and Markdown files.
   - **LangChain VectorStores:** FAISS is used for document embedding and retrieval.
+
+### Authentication
+
+- **Firebase:** Handles user login, registration, and secure session management.
+
+### Database
+
+- **Firestore:** Stores chat history for authenticated users.
 
 ### Data Processing
 
@@ -104,6 +117,7 @@ Upload PDF, TXT, or Markdown files and ask questions directly about their conten
 - **SearchBot:** Type your prompt, and the bot will use both LLMs and search tools to give you an answer.
 - **Voicebot:** Record or upload audio, get it transcribed, receive an LLM reply, and hear the response.
 - **File Q&A:** Upload a PDF, TXT, or MD file and ask questions related to its content.
+- **Account:** Sign up or log in to start managing your saved chats.
 
 ## Demo
 

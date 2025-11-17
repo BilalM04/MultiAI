@@ -2,7 +2,7 @@ import streamlit as st
 from groq import Groq, RateLimitError
 from utils.sidebar import render_sidebar
 from utils.initialize import initialize
-from utils.constants import rate_limit_message, generic_error_message
+from utils.constants import rate_limit_message, generic_error_message, voicebot_state
 from models.active_models import get_owner
 import tempfile
 import base64
@@ -23,7 +23,7 @@ client = Groq(api_key=st.secrets.get("groq_api_key"))
 # Sidebar
 # ---------------------------------------
 with st.sidebar:
-    render_sidebar(2)
+    render_sidebar(voicebot_state)
 
 # ---------------------------------------
 # Page Header
@@ -82,13 +82,14 @@ elif tab == upload_tab:
 
     if uploaded_file:
         audio_value = uploaded_file
+        st.audio(uploaded_file, format="audio/wav")
 
 # ---------------------------------------
 # HISTORY TAB
 # ---------------------------------------
 elif tab == history_tab:
     if not st.session_state.voice_messages:
-        st.info("No conversation history yet.", icon=":material/chat:")
+        st.info("No conversation history yet.", icon="💬")
     else:
         for msg in st.session_state.voice_messages:
             st.chat_message(msg["role"]).markdown(msg["content"])

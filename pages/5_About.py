@@ -2,6 +2,7 @@ import streamlit as st
 from utils.sidebar import render_sidebar
 from models.active_models import get_owner
 from utils.initialize import initialize
+from utils.constants import about_state
 
 # ---------------------------------------
 # Initialize session
@@ -12,7 +13,7 @@ initialize()
 # Sidebar
 # ---------------------------------------
 with st.sidebar:
-    render_sidebar(4)
+    render_sidebar(about_state)
 
 # ---------------------------------------
 # Content
@@ -49,6 +50,11 @@ st.write(
     "interact with your files without reading everything manually."
 )
 
-st.title("👤 About the Creator")
+st.title("⚙️ Account")
+st.write(
+    "Create an account or log in to sync your conversations across sessions and access your saved chat histories."
+)
+
+st.title("💻 About the Creator")
 st.write("Feel free to reach out or explore my other projects through the links below:")
 st.markdown("- **Website:** [bilalm04.github.io](https://bilalm04.github.io/)\n- **GitHub:** [BilalM04](https://github.com/BilalM04)\n- **LinkedIn:** [/in/mohammadbilal7](https://www.linkedin.com/in/mohammadbilal7/)")

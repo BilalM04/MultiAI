@@ -3,6 +3,7 @@ import time
 from groq import Groq, RateLimitError
 from utils.sidebar import render_sidebar
 from utils.initialize import initialize
+from utils.constants import chatbot_state
 from models.active_models import get_owner
 
 # ---------------------------------------
@@ -19,7 +20,7 @@ client = Groq(api_key=st.secrets.get("groq_api_key"))
 # Sidebar
 # ---------------------------------------
 with st.sidebar:
-    render_sidebar(0)
+    render_sidebar(chatbot_state)
 
 # ---------------------------------------
 # Page Header

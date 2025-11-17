@@ -4,7 +4,7 @@ from langchain.agents import initialize_agent, AgentType
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 from utils.sidebar import render_sidebar
 from models.active_models import get_owner
-from utils.constants import wikipedia_tool_name, duckduckgo_tool_name, generic_error_message
+from utils.constants import wikipedia_tool_name, duckduckgo_tool_name, generic_error_message, searchbot_state
 from utils.initialize import initialize
 
 # ---------------------------------------
@@ -26,7 +26,7 @@ llm = ChatGroq(
 # Sidebar
 # ---------------------------------------
 with st.sidebar:
-    render_sidebar(1)
+    render_sidebar(searchbot_state)
 
 # ---------------------------------------
 # Page Header
