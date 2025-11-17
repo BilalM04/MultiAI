@@ -89,7 +89,7 @@ elif tab == upload_tab:
 # ---------------------------------------
 elif tab == history_tab:
     if not st.session_state.voice_messages:
-        st.info("No conversation history yet.", icon="💬")
+        st.info("No conversation history yet", icon="💬")
     else:
         for msg in st.session_state.voice_messages:
             st.chat_message(msg["role"]).markdown(msg["content"])

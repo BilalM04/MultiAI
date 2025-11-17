@@ -50,7 +50,7 @@ st.title('⚙️ Account')
 # Unauthenticated Workflow
 # ---------------------------------------
 if any(st.session_state[key] is None for key in ("user", "id_token", "refresh_token", "local_id")):
-    st.caption("🚀 Please **log in** or **sign up** to manage chat history.")
+    st.caption("🚀 Please **log in** or **sign up** to manage chat history")
     login_tab, signup_tab = st.tabs(["🔑 Log In", "📝 Sign Up"])
 
     # LOGIN TAB
@@ -104,7 +104,7 @@ else:
     histories = st.session_state.get("chat_histories", {})
 
     if not histories:
-        st.info("No chat history saved yet.", icon=":material/info:")
+        st.info("No chat history saved yet", icon=":material/info:")
     else:
 
         for chat_id, history in histories.items():
