@@ -105,6 +105,8 @@ if uploaded_files:
             retriever=vectorstore.as_retriever(),
             input_key='question'
         )
+else:
+    st.session_state.qna_messages = []
 
 # ---------------------------------------
 # Chat History
@@ -131,7 +133,8 @@ if prompt and len(prompt) <= 500:
     st.session_state.qna_messages.append({'role': 'user', 'content': prompt})
     
     # Get response from the LLM using RAG
-    response = st.session_state.chain.run(prompt)
+    with st.spinner("Generating AI response using RAG..."):
+        response = st.session_state.chain.run(prompt)
     
     st.chat_message('assistant').markdown(response)
     st.session_state.qna_messages.append({'role': 'assistant', 'content': response})
