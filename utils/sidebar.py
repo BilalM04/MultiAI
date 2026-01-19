@@ -124,6 +124,9 @@ def render_sidebar(state):
         if selected_tts_model != st.session_state.selected_tts_model:
             st.session_state.selected_tts_model = selected_tts_model
 
+        if selected_tts_voice != st.session_state.selected_tts_voice:
+            st.session_state.selected_tts_voice = selected_tts_voice
+
     # Chatbot, Searchbot, voicebot, and file q&a selection
     if state not in [about_state, account_state]:
         selected_text_model = st.selectbox("Response LLM", text_models, index=text_models.index(st.session_state.selected_text_model))
